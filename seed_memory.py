@@ -1,6 +1,5 @@
 import asyncio
 from vanna_setup import get_agent
-# Import the RequestContext required by Vanna 2.0
 from vanna.core.user import RequestContext
 
 async def seed_memory():
@@ -45,19 +44,19 @@ async def seed_memory():
         ("Show patient registration trend by month", "SELECT strftime('%Y-%m', registered_date) as month, COUNT(*) FROM patients GROUP BY month ORDER BY month")
     ]
 
-    print("🌱 Starting to seed agent memory...")
+    print(" Starting to seed agent memory...")
     
     for question, sql in examples:
-        # Explicitly naming EVERY argument to prevent "multiple values" errors
+        
         await agent.agent_memory.save_tool_usage(
-            context=context,        # Named explicitly
-            question=question,     # Named explicitly
-            tool_name="run_sql",   # Named explicitly
-            args={"sql": sql},     # Named explicitly
-            success=True           # Named explicitly
+            context=context,        
+            question=question,     
+            tool_name="run_sql",   
+            args={"sql": sql},     
+            success=True           
         )
     
-    print(f"✅ Agent memory seeded with {len(examples)} examples.")
+    print(f"Agent memory seeded with {len(examples)} examples.")
 
 if __name__ == "__main__":
     asyncio.run(seed_memory())
