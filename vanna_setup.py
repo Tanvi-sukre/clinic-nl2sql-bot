@@ -21,7 +21,7 @@ def get_agent():
     if not api_key: 
         raise ValueError("GOOGLE_API_KEY is missing!")
 
-    llm = GeminiLlmService(api_key=api_key, model="gemini-1.5-flash")
+    llm = GeminiLlmService(api_key=api_key, model="gemini-2.5-flash")
     runner = SqliteRunner(database_path="clinic.db")
     
     # 1. Initialize an empty registry
